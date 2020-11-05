@@ -1,0 +1,22 @@
+name: Test
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  WORKSPACE: ${{ github.workspace }}
+  DEVELOPER_DIR: /Applications/Xcode_12.1.app/Contents/Developer
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Do the test
+        run: |
+          set -x
+          xcode-select -p
+          xcodebuild -showsdks
+          xcrun --sdk iphoneos --show-sdk-version
